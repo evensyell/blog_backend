@@ -56,6 +56,7 @@ TEMPLATES = [
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
+                "django.template.context_processors.media",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
@@ -105,7 +106,7 @@ STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "/static/"),)
 # 媒体文件管理
-MEDIA_URL = "/filesome/"
+MEDIA_URL = "filesome/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "filesome")
 
 # DRF
