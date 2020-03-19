@@ -1,5 +1,5 @@
 import multiprocessing
-
+backlog = 512
 bind = "127.0.0.1:8000"  # 绑定的ip与端口
 workers = 2  # 核心数
 errorlog = "/home/log/gunicorn.error.log"  # 发生错误时log的路径
