@@ -10,9 +10,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = ")#zon%p=^n2y3u*b#6@9dv-8xl-1cf3))4ioqo*(l9r10kf*0l"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['evensyell.ml','193.9.46.135','127.0.0.1']
 
 # Application definition
 
@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "django_filters",
+    "gunicorn",
     # 我的app
     "backend",
 ]
@@ -102,7 +103,6 @@ USE_TZ = True
 # 静态文件管理
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "frontend/dist/spa/statics")]
 
 # 媒体文件管理
 MEDIA_URL = "/filesome/"
