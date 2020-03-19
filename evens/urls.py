@@ -31,6 +31,11 @@ urlpatterns = [
         {"document_root": settings.STATIC_ROOT},
         name="static",
     ),
+    url(
+        r"^filesome/(?P<path>.*)$",
+        static.serve,
+        {"document_root": settings.MEDIA_ROOT},
+    ),
 ]
 
-urlpatterns += static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns += static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
