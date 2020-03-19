@@ -12,7 +12,7 @@ SECRET_KEY = ")#zon%p=^n2y3u*b#6@9dv-8xl-1cf3))4ioqo*(l9r10kf*0l"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['evensyell.ml','193.9.46.135','127.0.0.1']
+ALLOWED_HOSTS = ["evensyell.ml", "193.9.46.135", "127.0.0.1"]
 
 # Application definition
 
@@ -103,7 +103,7 @@ USE_TZ = True
 # 静态文件管理
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "/static/"),)
 # 媒体文件管理
 MEDIA_URL = "/filesome/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "filesome")
