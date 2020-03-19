@@ -32,7 +32,7 @@ urlpatterns = [
         name="static",
     ),
     url(
-        r"^filesome/(?P<path>.*)$",
+        r"^media/(?P<path>.*)$",
         static.serve,
         {"document_root": settings.MEDIA_ROOT},
     ),

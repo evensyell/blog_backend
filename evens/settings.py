@@ -106,8 +106,8 @@ STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "/static/"),)
 # 媒体文件管理
-MEDIA_URL = "/filesome/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "filesome")
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # DRF
 REST_FRAMEWORK = {
