@@ -72,6 +72,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        "CONN_MAX_AGE": 600,
     }
 }
 
@@ -125,7 +126,6 @@ REST_FRAMEWORK = {
 }
 
 # 跨域
-#  新增以下配置  #
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
 # Origin '*' in CORS_ORIGIN_WHITELIST is missing scheme 出现该错误则将其注释掉
