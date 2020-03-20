@@ -103,7 +103,6 @@ USE_TZ = True
 # 静态文件管理
 STATIC_URL = "/djstatic/"
 STATIC_ROOT = os.path.join(BASE_DIR, "djstatic")
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "/djstatic/"),)
 # 媒体文件管理
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
