@@ -6,7 +6,8 @@ from .models import *
 from .tools import *
 
 
-class ImgSerializer(serializers.ModelSerializer):
+class ImgSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.IntegerField(read_only=True)
     # imgs = serializers.ListField(
     #     child=serializers.FileField(allow_empty_file=False),
     #     write_only=True,

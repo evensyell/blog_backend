@@ -26,10 +26,10 @@ urlpatterns = [
         "api-auth/", include("rest_framework.urls", namespace="rest_framework")
     ),
     url(
-        r"^static/(?P<path>.*)$",
+        r"^djstatic/(?P<path>.*)$",
         static.serve,
         {"document_root": settings.STATIC_ROOT},
-        name="static",
+        name="djstatic",
     ),
     url(
         r"^media/(?P<path>.*)$",
