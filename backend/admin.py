@@ -25,13 +25,13 @@ class SoftwareAdmin(admin.ModelAdmin):
     display = "__all__"
 
 @admin.register(Hito)
-class SoftwareAdmin(admin.ModelAdmin):
+class HitoAdmin(admin.ModelAdmin):
     display = "__all__"
 
 @admin.register(Img)
-class SoftwareAdmin(admin.ModelAdmin):
+class ImgAdmin(admin.ModelAdmin):
     display = "__all__"
 
 @admin.register(Music)
-class SoftwareAdmin(admin.ModelAdmin):
+class MusicAdmin(admin.ModelAdmin):
     display = "__all__"
