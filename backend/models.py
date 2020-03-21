@@ -15,7 +15,7 @@ class Tag(models.Model):
 
 class Article(models.Model):
     title = models.CharField("标题", max_length=90)
-    abstract = models.CharField("摘要", max_length=100)
+    abstract = models.CharField("摘要", max_length=200)
     tags = models.ManyToManyField(Tag, blank=True)
     img = ProcessedImageField(upload_to="%Y/img/article_img/", blank=True)
     markdown = models.FileField(upload_to="%Y/markdown/", blank=True)
@@ -34,7 +34,7 @@ class Software(models.Model):
     title = models.CharField("软件名", max_length=90)
     version = models.CharField("版本号", max_length=10)
     os = models.IntegerField("平台", choices=OS_CHOICES)
-    abstract = models.CharField("简介", max_length=100)
+    abstract = models.CharField("简介", max_length=200)
     logo = ProcessedImageField(upload_to="%Y/img/software_logo/", blank=True)
     update = models.DateTimeField(auto_now=True)
     link1 = models.CharField(max_length=9999, blank=True)
@@ -52,9 +52,9 @@ class Video(models.Model):
     CATEGORY_CHOICES = ((1, "Anime"), (2, "Movie"), (3, "Dorama"), (4, "Chip"))
 
     title = models.CharField("标题", max_length=90)
-    abstract = models.CharField("简介", max_length=100)
+    abstract = models.CharField("简介", max_length=200)
     category = models.IntegerField("类型", choices=CATEGORY_CHOICES)
-    sub = models.CharField("字幕", max_length=10,)
+    sub = models.CharField("字幕", max_length=10)
     cover = ProcessedImageField(upload_to="%Y/img/video_cover/", blank=True)
     link1 = models.CharField(max_length=9999, blank=True)
     link2 = models.CharField(max_length=9999, blank=True)

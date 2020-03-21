@@ -31,13 +31,17 @@ class ImgSerializer(serializers.HyperlinkedModelSerializer):
         return img
 
 
-class HitoSerializer(serializers.ModelSerializer):
+class HitoSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
     class Meta:
         model = Hito
         fields = "__all__"
 
 
-class MusicSerializer(serializers.ModelSerializer):
+class MusicSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
     class Meta:
         model = Music
         fields = "__all__"
