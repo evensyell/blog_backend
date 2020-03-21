@@ -101,6 +101,8 @@ class Hito(models.Model):
     def __str__(self):
         return self.what
 
+    class Meta:
+        ordering = ("-pk",)
 
 class Music(models.Model):
     music = models.FileField(upload_to="%Y/music/")
