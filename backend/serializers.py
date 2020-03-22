@@ -6,30 +6,6 @@ from .models import *
 from .tools import *
 
 
-class ImgSerializer(serializers.HyperlinkedModelSerializer):
-    id = serializers.IntegerField(read_only=True)
-    # imgs = serializers.ListField(
-    #     child=serializers.FileField(allow_empty_file=False),
-    #     write_only=True,
-    #     required=False,
-    # )
-    # img = serializers.ImageField(read_only=True)
-
-    class Meta:
-        model = Img
-        fields = "__all__"
-
-    def create(self, validated_data):
-        if "img" in validated_data:
-            img_data = validated_data.pop("img")
-            # for img_data in imgs_data:
-            md5 = GetMd5(img_data)
-            img, crated = Img.objects.get_or_create(md5=md5)
-            if crated:
-                img.img = img_data
-                img.save()
-        return img
-
 
 class HitoSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.IntegerField(read_only=True)
@@ -172,3 +148,22 @@ class VideoSerializer(serializers.HyperlinkedModelSerializer):
         data = super().to_representation(instance)
         data.update(category=instance.get_category_display())
         return data
+
+
+class ImgSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = Img
+        fields = "__all__"
+
+    def create(self, validated_data):
+        if "img" in validated_data:
+            img_data = validated_data.pop("img")
+            # for img_data in imgs_data:
+            md5 = GetMd5(img_data)
+            img, crated = Img.objects.get_or_create(md5=md5)
+            if crated:
+                img.img = img_data
+            img.save()
+        return img
