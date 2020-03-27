@@ -1,6 +1,7 @@
 import os
 from time import strftime
 
+from django.contrib.auth.models import User
 from django.db import models
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
@@ -21,6 +22,9 @@ class Article(models.Model):
     markdown = models.FileField(upload_to="%Y/markdown/", blank=True)
     update = models.DateTimeField(auto_now=True,)
 
+    # user = models.OneToOneField(
+    #     User, on_delete=models.CASCADE, related_name="article"
+    # )
     class Meta:
         ordering = ("-update",)
 
@@ -39,8 +43,10 @@ class Software(models.Model):
     update = models.DateTimeField(auto_now=True)
     link1 = models.CharField(max_length=9999, blank=True)
     link2 = models.CharField(max_length=9999, blank=True)
-    link3 = models.CharField(max_length=9999, blank=True)
-
+    
+    # user = models.OneToOneField(
+    #     User, on_delete=models.CASCADE, related_name="software"
+    # )
     class Meta:
         ordering = ("-update",)
 
@@ -58,9 +64,11 @@ class Video(models.Model):
     cover = ProcessedImageField(upload_to="%Y/img/video_cover/", blank=True)
     link1 = models.CharField(max_length=9999, blank=True)
     link2 = models.CharField(max_length=9999, blank=True)
-    link3 = models.CharField(max_length=9999, blank=True)
     update = models.DateTimeField(auto_now=True)
 
+    # user = models.OneToOneField(
+    #     User, on_delete=models.CASCADE, related_name="video"
+    # )
     class Meta:
         ordering = ("-update",)
 
