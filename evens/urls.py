@@ -22,7 +22,6 @@ router.register("userpro", users.UserProViewSet)
 
 
 urlpatterns = [
-    path("djadmin/", admin.site.urls),
     path("api/", include(router.urls)),
     path(
         "api-auth/", include("rest_framework.urls", namespace="rest_framework")
@@ -31,6 +30,7 @@ urlpatterns = [
     path(
         "api/token/refresh/", TokenRefreshView.as_view(), name="refresh_token",
     ),
+    path("djadmin/", admin.site.urls),
     # 静态资源/媒体资源访问
     url(
         r"^djstatic/(?P<path>.*)$",
