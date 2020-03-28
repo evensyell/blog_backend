@@ -25,6 +25,7 @@ urlpatterns = [
     path(
         "api-auth/", include("rest_framework.urls", namespace="rest_framework")
     ),
+    # JWT token请求
     path("api/token/", TokenObtainPairView.as_view(), name="get_token",),
     path(
         "api/token/refresh/", TokenRefreshView.as_view(), name="refresh_token",
