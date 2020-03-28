@@ -6,7 +6,6 @@ from django.views.generic.base import TemplateView
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-# from django.conf.urls import url
 from backend import views
 from users import views as users
 
