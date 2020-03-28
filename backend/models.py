@@ -1,10 +1,11 @@
 import os
 from time import strftime
 
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.db import models
 from imagekit.models import ProcessedImageField
-from imagekit.processors import ResizeToFit
+
+# from imagekit.processors import ResizeToFit
 
 
 class Tag(models.Model):
@@ -43,7 +44,7 @@ class Software(models.Model):
     update = models.DateTimeField(auto_now=True)
     link1 = models.CharField(max_length=9999, blank=True)
     link2 = models.CharField(max_length=9999, blank=True)
-    
+
     # user = models.OneToOneField(
     #     User, on_delete=models.CASCADE, related_name="software"
     # )
@@ -55,12 +56,11 @@ class Software(models.Model):
 
 
 class Video(models.Model):
-    CATEGORY_CHOICES = ((1, "Anime"), (2, "Movie"), (3, "Dorama"), (4, "Chip"))
+    CATEGORY_CHOICES = ((1, "Anime"), (2, "Movie"), (3, "Dorama"), (4, "Short"))
 
     title = models.CharField("标题", max_length=90)
     abstract = models.CharField("简介", max_length=900)
     category = models.IntegerField("类型", choices=CATEGORY_CHOICES)
-    sub = models.CharField("字幕", max_length=10)
     cover = ProcessedImageField(upload_to="%Y/img/video_cover/", blank=True)
     link1 = models.CharField(max_length=9999, blank=True)
     link2 = models.CharField(max_length=9999, blank=True)
@@ -77,7 +77,7 @@ class Video(models.Model):
 
 
 class Img(models.Model):
-    img = models.ImageField(upload_to="%Y/img/", blank=True)
+    img = ProcessedImageField(upload_to="%Y/img/", blank=True)
     md5 = models.CharField(max_length=128, unique=True, blank=True)
     software = models.ForeignKey(
         Software,
@@ -105,12 +105,14 @@ class Hito(models.Model):
     what = models.CharField(max_length=999)
     who = models.CharField(max_length=64)
     where = models.CharField(max_length=64)
+    update = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.what
 
     class Meta:
         ordering = ("-pk",)
+
 
 class Music(models.Model):
     music = models.FileField(upload_to="%Y/music/")

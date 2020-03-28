@@ -6,7 +6,6 @@ from .models import *
 from .tools import *
 
 
-
 class HitoSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.IntegerField(read_only=True)
 
@@ -130,6 +129,7 @@ class VideoSerializer(serializers.HyperlinkedModelSerializer):
         if "imgs" in validated_data:
             imgs_data = validated_data.pop("imgs")
             video = Video.objects.create(**validated_data)
+
             for img_data in imgs_data:
                 md5 = GetMd5(img_data)
                 img, crated = Img.objects.get_or_create(md5=md5)
@@ -141,6 +141,7 @@ class VideoSerializer(serializers.HyperlinkedModelSerializer):
                     img.video = video
                     img.save()
         else:
+
             video = Video.objects.create(**validated_data)
         return video
 
