@@ -24,14 +24,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # 第三方
+    # 第三方包
     "imagekit",
     "corsheaders",
     "rest_framework",
     "rest_framework_simplejwt",
     "django_filters",
     "gunicorn",
-    # 我的app
+    # 自定义包
     "backend",
     "users",
 ]
@@ -83,17 +83,15 @@ DATABASES = {
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
+    # {
+    #     "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    # },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    # {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
+
+USERS_AUTO_LOGIN_ON_ACTIVATION = True  # 激活后自动登录用户
+USERS_CHECK_PASSWORD_COMPLEXITY = False  # 检验密码强度
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -129,7 +127,7 @@ REST_FRAMEWORK = {
         "rest_framework.renderers.TemplateHTMLRenderer",
     ),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 12,
+    "PAGE_SIZE": 999,
     "DEFAULT_FILTER_BACKENDS": [
         "django_filters.rest_framework.DjangoFilterBackend",
         # "django_filters.rest_framework.SearchFilter",

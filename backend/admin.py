@@ -12,7 +12,6 @@ class ArticleAdmin(admin.ModelAdmin):
         "title",
         "update",
         "标签",
-        "abstract",
         "image_data",
         "markdown",
     )
@@ -32,26 +31,6 @@ class ArticleAdmin(admin.ModelAdmin):
 @admin.register(Tag)
 class TagsAdmin(admin.ModelAdmin):
     display = "tag_name"
-
-
-@admin.register(Video)
-class VideoAdmin(admin.ModelAdmin):
-    display = "__all__"
-
-
-@admin.register(Software)
-class SoftwareAdmin(admin.ModelAdmin):
-    display = "__all__"
-
-
-@admin.register(Hito)
-class HitoAdmin(admin.ModelAdmin):
-    display = "__all__"
-
-
-@admin.register(Img)
-class ImgAdmin(admin.ModelAdmin):
-    display = "__all__"
 
 
 @admin.register(Music)

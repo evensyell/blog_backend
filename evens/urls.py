@@ -9,27 +9,23 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from backend import views
 from users import views as users
 
+from django.views.decorators.csrf import csrf_exempt
+
 router = DefaultRouter()
 router.register("article", views.ArticleViewSet)
 router.register("tag", views.TagViewSet)
-router.register("software", views.SoftwareViewSet)
-router.register("video", views.VideoViewSet)
-router.register("img", views.ImgViewSet)
-router.register("hito", views.HitoViewSet)
 router.register("music", views.MusicViewSet)
+router.register("comment", views.CommentViewSet)
 router.register("userpro", users.UserProViewSet)
 
 
 urlpatterns = [
     path("api/", include(router.urls)),
-    path(
-        "api-auth/", include("rest_framework.urls", namespace="rest_framework")
-    ),
+    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
+    path("api-register/", csrf_exempt(users.Register.as_view()), name="register"),
     # JWT token请求
     path("api/token/", TokenObtainPairView.as_view(), name="get_token",),
-    path(
-        "api/token/refresh/", TokenRefreshView.as_view(), name="refresh_token",
-    ),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="refresh_token",),
     path("djadmin/", admin.site.urls),
     # 静态资源/媒体资源访问
     url(
@@ -38,9 +34,5 @@ urlpatterns = [
         {"document_root": settings.STATIC_ROOT},
         name="djstatic",
     ),
-    url(
-        r"^media/(?P<path>.*)$",
-        static.serve,
-        {"document_root": settings.MEDIA_ROOT},
-    ),
+    url(r"^media/(?P<path>.*)$", static.serve, {"document_root": settings.MEDIA_ROOT},),
 ]

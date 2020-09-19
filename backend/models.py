@@ -4,8 +4,9 @@ from time import strftime
 # from django.contrib.auth.models import User
 from django.db import models
 from imagekit.models import ProcessedImageField
+from django.contrib.auth.models import User
 
-# from imagekit.processors import ResizeToFit
+from mptt.models import MPTTModel, TreeForeignKey
 
 
 class Tag(models.Model):
@@ -14,15 +15,17 @@ class Tag(models.Model):
     def __str__(self):
         return self.tag_name
 
+    class Meta:
+        ordering = ("id",)
+
 
 class Article(models.Model):
-    title = models.CharField("标题", max_length=90)
-    abstract = models.CharField("摘要", max_length=200)
+    title = models.CharField(max_length=100, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
+    share = models.BooleanField(blank=True, default=False)
     img = ProcessedImageField(upload_to="%Y/img/article_img/", blank=True)
     markdown = models.FileField(upload_to="%Y/markdown/", blank=True)
     update = models.DateTimeField(auto_now=True,)
-
     # user = models.OneToOneField(
     #     User, on_delete=models.CASCADE, related_name="article"
     # )
@@ -31,87 +34,6 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class Software(models.Model):
-    OS_CHOICES = ((1, "Windows"), (2, "Android"), (3, "Chrome"))
-
-    title = models.CharField("软件名", max_length=90)
-    version = models.CharField("版本号", max_length=10)
-    os = models.IntegerField("平台", choices=OS_CHOICES)
-    abstract = models.CharField("简介", max_length=900)
-    logo = ProcessedImageField(upload_to="%Y/img/software_logo/", blank=True)
-    update = models.DateTimeField(auto_now=True)
-    link1 = models.CharField(max_length=9999, blank=True)
-    link2 = models.CharField(max_length=9999, blank=True)
-
-    # user = models.OneToOneField(
-    #     User, on_delete=models.CASCADE, related_name="software"
-    # )
-    class Meta:
-        ordering = ("-update",)
-
-    def __str__(self):
-        return self.title
-
-
-class Video(models.Model):
-    CATEGORY_CHOICES = ((1, "Anime"), (2, "Movie"), (3, "Dorama"), (4, "Short"))
-
-    title = models.CharField("标题", max_length=90)
-    abstract = models.CharField("简介", max_length=900)
-    category = models.IntegerField("类型", choices=CATEGORY_CHOICES)
-    cover = ProcessedImageField(upload_to="%Y/img/video_cover/", blank=True)
-    link1 = models.CharField(max_length=9999, blank=True)
-    link2 = models.CharField(max_length=9999, blank=True)
-    update = models.DateTimeField(auto_now=True)
-
-    # user = models.OneToOneField(
-    #     User, on_delete=models.CASCADE, related_name="video"
-    # )
-    class Meta:
-        ordering = ("-update",)
-
-    def __str__(self):
-        return self.title
-
-
-class Img(models.Model):
-    img = ProcessedImageField(upload_to="%Y/img/", blank=True)
-    md5 = models.CharField(max_length=128, unique=True, blank=True)
-    software = models.ForeignKey(
-        Software,
-        related_name="software_imgs",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-    )
-    video = models.ForeignKey(
-        Video,
-        related_name="video_imgs",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-    )
-
-    def __str__(self):
-        return self.md5
-
-    class Meta:
-        ordering = ("-pk",)
-
-
-class Hito(models.Model):
-    what = models.CharField(max_length=999)
-    who = models.CharField(max_length=64)
-    where = models.CharField(max_length=64)
-    update = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.what
-
-    class Meta:
-        ordering = ("-pk",)
 
 
 class Music(models.Model):
@@ -125,3 +47,18 @@ class Music(models.Model):
 
     class Meta:
         ordering = ("-update",)
+
+
+class Comment(models.Model):
+    article = models.ForeignKey(
+        Article, on_delete=models.CASCADE, related_name="comments"
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
+    content = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["created"]
+
+    def __str__(self):
+        return self.content[:20]
