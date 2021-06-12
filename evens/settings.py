@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # 自定义包
     "backend",
     "users",
+    "bbs",
 ]
 
 MIDDLEWARE = [
