@@ -13,7 +13,7 @@ SECRET_KEY = ")#zon%p=^n2y3u*b#6@9dv-8xl-1cf3))4ioqo*(l9r10kf*0l"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     # 第三方包
     "imagekit",
     "corsheaders",
+    "django_filters",
     "rest_framework",
     "rest_framework_simplejwt",
     "gunicorn",
@@ -86,10 +87,12 @@ AUTH_PASSWORD_VALIDATORS = [
     # {
     #     "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     # },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
     # {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
-
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField" # 自动创建主键
 USERS_AUTO_LOGIN_ON_ACTIVATION = True  # 激活后自动登录用户
 USERS_CHECK_PASSWORD_COMPLEXITY = False  # 检验密码强度
 
