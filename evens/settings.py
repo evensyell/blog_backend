@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "rest_framework_simplejwt",
-    "django_filters",
     "gunicorn",
     # 自定义包
     "backend",
