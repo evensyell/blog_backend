@@ -166,27 +166,27 @@ CORS_ORIGIN_ALLOW_ALL = True
 # Origin '*' in CORS_ORIGIN_WHITELIST is missing scheme 出现该错误则将其注释掉
 # CORS_ORIGIN_WHITELIST = ("http://127.0.0.1:8080",)
 CSRF_TRUSTED_ORIGINS  = [
-     '*'
+     'evensyell.ml'
 ]
-CORS_ALLOW_METHODS = (
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-    "VIEW",
-)
-CORS_ALLOW_HEADERS = (
-    "XMLHttpRequest",
-    "X_FILENAME",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-    "Pragma",
-)
+# CORS_ALLOW_METHODS = (
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+#     "VIEW",
+# )
+# CORS_ALLOW_HEADERS = (
+#     "XMLHttpRequest",
+#     "X_FILENAME",
+#     "accept-encoding",
+#     "authorization",
+#     "content-type",
+#     "dnt",
+#     "origin",
+#     "user-agent",
+#     "x-csrftoken",
+#     "x-requested-with",
+#     "Pragma",
+# )
