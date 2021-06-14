@@ -1,7 +1,6 @@
 
 bind = "127.0.0.1:8000"  # 绑定的ip与端口
 workers = 3  # 核心数
-worker_class='gevent'
 
 timeout=60
 backlog = 512
