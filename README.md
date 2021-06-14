@@ -1,4 +1,2 @@
 # 这是博客工程的后端构建
-Django Rest Framework
-
-gunicorn thanks
+# Thanks to Django Rest Framework
