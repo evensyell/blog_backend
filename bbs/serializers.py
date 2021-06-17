@@ -30,12 +30,3 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
         model = Post
         fields = "__all__"
 
-    def update(self, instance, validated_data):
-        if "markdown" in validated_data:
-            if instance.markdown:
-                old_file = os.path.join(settings.MEDIA_ROOT, instance.markdown.path)
-                if old_file:
-                    os.remove(old_file)
-            instance.markdown = validated_data.get("markdown", instance.markdown)
-        instance.save()
-        return instance

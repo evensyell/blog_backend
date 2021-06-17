@@ -5,8 +5,8 @@ worker_class = 'gevent'
 
 timeout=60
 backlog = 512
-errorlog = "/www/log/gunicorn_error.log"  # 发生错误时log的路径
-accesslog = "/www/log/gunicorn_access.log"  # 正常时的log路径
+errorlog = "/www/log/gunicorn.error"  # 发生错误时log的路径
+accesslog = "/www/log/gunicorn.log"  # 正常时的log路径
 # loglevel = 'debug'   #日志等级
 proc_name = "dj"  # 进程名
 

@@ -101,7 +101,6 @@ class ArticleSerializer(serializers.HyperlinkedModelSerializer):
                 if old_file:
                     os.remove(old_file)
             instance.markdown = validated_data.get("markdown", instance.markdown)
-
             instance.title = titileFromPath(instance.markdown.name)
         instance.save()
         return instance
