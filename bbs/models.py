@@ -16,7 +16,7 @@ class Post(models.Model):
     #     UserPro, on_delete=models.CASCADE, related_name="articles"
     # )
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
-    img = ProcessedImageField(upload_to="%Y/img/post_img/", blank=True)
+    img = ProcessedImageField(upload_to="img/post_img/", blank=True)
 
     class Meta:
         ordering = ("-created",)

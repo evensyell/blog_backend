@@ -22,8 +22,8 @@ class Article(models.Model):
     title = models.CharField(max_length=100, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
     special = models.BooleanField(blank=True, default=False)
-    img = ProcessedImageField(upload_to="%Y/img/article_img/", blank=True)
-    markdown = models.FileField(upload_to="%Y/markdown/", blank=True)
+    img = ProcessedImageField(upload_to="img/article_img/", blank=True)
+    markdown = models.FileField(upload_to="markdown/", blank=True)
     update = models.DateTimeField(auto_now=True,)
     # userpro = models.ForeignKey(
     #     UserPro, on_delete=models.CASCADE, related_name="articles"
@@ -38,7 +38,7 @@ class Article(models.Model):
 
 
 class Music(models.Model):
-    music = models.FileField(upload_to="%Y/music/")
+    music = models.FileField(upload_to="music/")
     title = models.CharField(max_length=100, blank=True)
     artist = models.CharField(max_length=100, blank=True)
     update = models.DateTimeField(auto_now=True)

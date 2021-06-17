@@ -12,7 +12,7 @@ from django.dispatch import receiver
 class UserPro(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="pro",primary_key=True)
     nickname = models.CharField("昵称", max_length=16, default="User One")
-    avatar = ProcessedImageField(upload_to="%Y/userPro/avatar", blank=True)
+    avatar = ProcessedImageField(upload_to="img/avatar", blank=True)
     motoo = models.CharField("个性签名", max_length=40, default="Nothing to say.")
 
     class Meta:
